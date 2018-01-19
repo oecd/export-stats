@@ -16,17 +16,17 @@ module.exports.nudger = (event, context, callback) => {
         'actions': [
           {
             'name': 'export',
+            'value': 'ok',
             'text': 'Oui ! :+1:',
             'type': 'button',
-            'style': 'primary',
-            'value': true
+            'style': 'primary'
           },
           {
             'name': 'export',
+            'value': 'ko',
             'text': 'Non ! :disappointed:',
             'type': 'button',
-            'style': 'danger',
-            'value': false
+            'style': 'danger'
           }
         ]
       }
