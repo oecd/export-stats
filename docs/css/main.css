@@ -154,9 +154,19 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
+#export-percentage {
+  font-size: 700%;
+  /* bof */
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
 
+body {
+  background-color: #000;
+}
 
-
+h1, p {
+  color: white;
+}
 
 
 
