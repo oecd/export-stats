@@ -1,15 +1,16 @@
 {
   "name": "lambda-slack-export-nudger",
   "version": "1.0.0",
-  "description": "",
+  "description": "Send nudge messages to a Slack channel",
   "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jakob Fix <jakob.fix@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "moment": "^2.20.1",
     "request": "^2.83.0"
   }
 }

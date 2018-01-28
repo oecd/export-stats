@@ -3,13 +3,19 @@
 module.exports.nudger = (event, context, callback) => {
   require('dotenv').config()
   const request = require('request')
+  const moment = require('moment')()
+
+  const date = (moment.day() <= 1 || moment.day() > 5)
+    ? moment.day(-2).format('dddd')
+    : 'yesterday'
+  console.log(`Moment is: ${moment}`)
   const slackWebhook = process.env.SLACK_WEBHOOK
   const slackOptions = {
-    'text': 'Bonjour ! Les derniers exports, étaient-ils OK ?',
+    'text': `Hello there :wave:! Did ${date}'s export go OK?`,
     'attachments': [
       {
-        'text': 'Choisis le bouton correspondant',
-        'fallback': 'Désolé, tu ne peux pas donner ton avis !',
+        'text': 'Please click the corresponding button:',
+        'fallback': 'Sorry, you can\'t give any feedback!',
         'callback_id': 'exportSuccessful',
         'color': '#3AA3E3',
         'attachment_type': 'default',
@@ -17,14 +23,14 @@ module.exports.nudger = (event, context, callback) => {
           {
             'name': 'export',
             'value': 'ok',
-            'text': 'Oui ! :+1:',
+            'text': 'Yes! :+1:',
             'type': 'button',
             'style': 'primary'
           },
           {
             'name': 'export',
             'value': 'ko',
-            'text': 'Non ! :disappointed:',
+            'text': 'No! :disappointed:',
             'type': 'button',
             'style': 'danger'
           }
