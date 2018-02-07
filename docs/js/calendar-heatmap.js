@@ -26,7 +26,7 @@ function calendarHeatmap () {
   const weekStart = 1 // 0 for Sunday, 1 for Monday
   let locale = {
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     No: 'No',
     on: 'on',
     Less: 'Less',
@@ -163,14 +163,14 @@ function calendarHeatmap () {
         })
 
       if (typeof onClick === 'function') {
-        dayRects.on('click', function (d) {
+        svg.selectAll('.day-cell').on('click', function (d) {
           var count = countForDate(d)
           onClick({date: d, count: count})
         })
       }
 
       if (chart.tooltipEnabled()) {
-        dayRects.on('mouseover', function (d, i) {
+        svg.selectAll('.day-cell').on('mouseover', function (d, i) {
           tooltip = d3.select(chart.selector())
             .append('div')
             .attr('class', 'day-cell-tooltip')
@@ -238,36 +238,43 @@ function calendarHeatmap () {
 
       locale.days.forEach(function (day, index) {
         index = formatWeekday(index)
-        if (index % 2) {
+        if (index % 2 === 0) {
           svg.append('text')
             .attr('class', 'day-initial')
             .attr('transform', 'translate(-8,' + (SQUARE_LENGTH + SQUARE_PADDING) * (index + 1) + ')')
-            .style('text-anchor', 'middle')
+            .style('text-anchor', 'end')
             .attr('dy', '2')
             .text(day)
         }
       })
     }
 
-    function pluralizedTooltipUnit (count) {
-      if (typeof tooltipUnit === 'string') {
-        return (tooltipUnit + (count === 1 ? '' : 's'))
-      }
-      for (var i in tooltipUnit) {
-        var _rule = tooltipUnit[i]
-        var _min = _rule.min
-        var _max = _rule.max || _rule.min
-        _max = _max === 'Infinity' ? Infinity : _max
-        if (count >= _min && count <= _max) {
-          return _rule.unit
-        }
-      }
-    }
-
+/*
+  On Fri, 23 Jan 2018, there was no export (yet).
+  The export on Tue, 1 Feb 2018 was successful.
+  The export on Wed, 23 Mar 2018 failed.
+  On weekends, there are no exports.
+*/
     function tooltipHTMLForDate (d) {
-      var dateStr = moment(d).format('ddd, MMM Do YYYY')
+      const day = moment(d)
+      var dateStr = day.format('ddd, Do MMM YYYY')
       var count = countForDate(d)
-      return '<span><strong>' + (count || locale.No) + ' ' + pluralizedTooltipUnit(count) + '</strong> ' + locale.on + ' ' + dateStr + '</span>'
+      let tooltip
+      if (day.isoWeekday() >= 6 /* Saturday or Sunday */) {
+        return '<span>On weekends, there are no exports so far.</span>'
+      }
+      switch (count) {
+        case 0:
+          tooltip = `On ${dateStr}, there was <strong>no export</strong> (yet).`
+          break
+        case 1:
+          tooltip = `The export on ${dateStr} was <strong>successful</strong>.`
+          break
+        case -1:
+          tooltip = `The export on ${dateStr} <strong>failed</strong>.`
+          break
+      }
+      return `<span>${tooltip}</span>`
     }
 
     function countForDate (d) {

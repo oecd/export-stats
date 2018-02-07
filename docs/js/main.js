@@ -26,7 +26,7 @@ let paddingObj = {}
 let finalArr = []
 
 function displayHeatmap () {
-  $.getJSON('chartData.json')
+  $.getJSON('https://untitled-uij8p2objuah.runkit.sh/docs-for-heatmap')
   .done(function (data) {
     // intermediate data structures for sorting and replacing ...
     let dataObj = {}
@@ -49,12 +49,14 @@ function displayHeatmap () {
       .endDate(to)
       .tooltipEnabled(true)
       .legendEnabled(false)
-      .onClick(function (data) {
+      .onClick((data) => {
         console.log('data', data)
       })
     heatmap() // render the chart
   })
+  // if the API doesn't return data, or not in time, display a dummy one
   .fail(function (jqxhr, textStatus, error) {
+    console.log(`Error retrieving documents for heatmap: ${error}.`)
     Array.from(d3.timeDays(from, to), (item) => { paddingObj[moment(item).endOf('day')] = -1 })
     _.forEach(paddingObj, (value, key) => finalArr.push({date: key, count: value}))
     const heatmap = calendarHeatmap()
@@ -72,6 +74,6 @@ function displayHeatmap () {
 }
 
 $(document).ready(function () {
-  displayHeatmap()
   displayStats()
+  displayHeatmap()
 })
