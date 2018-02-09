@@ -22,6 +22,13 @@ function displayStats () {
   })
 }
 
+function displayMeme () {
+  $.getJSON('https://api-endpoint-for-export-stats-uij8p2objuah.runkit.sh/meme-generator')
+  .done(function (data) {
+    $('#meme').attr('src', data.url)
+  })
+}
+
 let paddingObj = {}
 let finalArr = []
 
@@ -76,4 +83,5 @@ function displayHeatmap () {
 $(document).ready(function () {
   displayStats()
   displayHeatmap()
+  displayMeme()
 })
