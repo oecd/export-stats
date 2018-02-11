@@ -11,7 +11,7 @@ module.exports.nudger = (event, context, callback) => {
   console.log(`Moment is: ${moment}`)
   const slackWebhook = process.env.SLACK_WEBHOOK
   const slackOptions = {
-    'text': `Hello there :wave:! Did ${date}'s export go OK?`,
+    'text': `Hello there :wave:! Did ${date}'s export go OK? If you're unsure, <https://pacps01.oecd.org/Dissemination|check here>.`,
     'attachments': [
       {
         'text': 'Please click the corresponding button:',
