@@ -33,7 +33,8 @@ let paddingObj = {}
 let finalArr = []
 
 function displayHeatmap () {
-  $.getJSON('https://untitled-uij8p2objuah.runkit.sh/docs-for-heatmap')
+  const timestamp = moment().unix()
+  $.getJSON(`https://untitled-uij8p2objuah.runkit.sh/docs-for-heatmap?cachebuster=${timestamp}`)
   .done(function (data) {
     // intermediate data structures for sorting and replacing ...
     let dataObj = {}
