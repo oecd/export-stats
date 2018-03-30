@@ -5,7 +5,8 @@ provider:
   region: eu-central-1
 # you can overwrite defaults here
 #  stage: dev
-
+#plugins:
+#  - serverless-local-schedule
 functions:
   nudger:
     handler: handler.nudger
@@ -15,3 +16,4 @@ functions:
           description: Sends a message to Slack for people to give feedback
           # every weekday at 9am
           rate: cron(0 7 ? * MON-FRI *)
+          #timezone: Europe/Paris
