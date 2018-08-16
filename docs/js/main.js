@@ -1,24 +1,27 @@
 /* global $ _ d3 calendarHeatmap moment */
 const threshold = 95
-const percentageElt = $('#export-percentage')
-const explanationElt = $('#export-explanation')
+const explanationElt = $('#export-alltime-explanation')
 const from = moment('2018-01-01').startOf('day').toDate()
 const to = moment('2018-12-31').endOf('day').toDate()
 
 function displayStats () {
-  $.getJSON('https://untitled-y13mrm2i2lqe.runkit.sh/', function (data) {
-    const total = data.total
-    const success = data.success
-    const failures = total - success
-
-    const percentage = Math.round(success * 100 / total)
-    percentageElt.text(`${percentage}%`)
-    explanationElt.text(`95% is the percentage to strive for.  Out of ${total} exports, ${failures} failed.`)
-    if (percentage >= threshold) {
-      percentageElt.css('color', 'green')
-    } else {
-      percentageElt.css('color', 'red')
-    }
+  $.getJSON('https://untitled-ithfprzbpej6.runkit.sh/', function (data) {
+    Object.keys(data).forEach(function (key) {
+      const total = data[key].total
+      const success = data[key].success
+      const failures = total - success
+      const percentageElt = $(`#export-${key}-percentage`)
+      const percentage = Math.round(success * 100 / total)
+      percentageElt.text(`${percentage}%`)
+      if (key === 'alltime') {
+        explanationElt.text(`Our goal is 95%.  Out of ${total} exports, ${failures} failed.`)
+      }
+      if (percentage >= threshold) {
+        percentageElt.css('color', 'green')
+      } else {
+        percentageElt.css('color', 'red')
+      }
+    })
   })
 }
 
