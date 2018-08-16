@@ -18,18 +18,32 @@
                 <header>
                   <h1>Export success ratio</h1>
                 </header>
-                <article>
-                  <section>
-                    <h2 id="export-percentage">&nbsp;</h2>
-                    <p id="export-explanation">95% is the percentage to strive for.</p>
-                    <p>&nbsp;</p>
-                    <h3>Daily stats</h3>
-                    <div id="heatmap"></div>
-                  </section>
-                </article>
-                <aside>
-                  <img src="//via.placeholder.com/300?text=%20" id="meme" height="300" width="300"/>
-                </aside>
+                <table style="width: 100% !important;">
+                  <tr>
+                    <td colspan="2" height="306" valign="top">
+                      <h3 style="margin-bottom:0">Daily stats</h3>
+                      <div id="heatmap"></div>
+                      <hr/>
+                      <br/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="50%" style="padding:1em">
+                      <p style="margin-top:0">Last 30 days</p>
+                      <h4 class="export-percentage" id="export-month-percentage">&nbsp;</h4>
+
+                      <p>Last 100 days</p>
+                      <h3 class="export-percentage" id="export-hundred-percentage">&nbsp;</h3>
+
+                      <p>Overall</p>
+                      <h2 class="export-percentage" id="export-alltime-percentage">&nbsp;</h2>
+                      <p id="export-alltime-explanation">Our goal is 95%.</p>
+                    </td>
+                    <td valign="top" width="50%" style="padding:1em">
+                      <img src="//via.placeholder.com/300?text=%20" id="meme" height="400" width="400"/>
+                    </td>
+                  </tr>
+                </table>
             </div> <!-- #main -->
         </div> <!-- #main-container -->
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
