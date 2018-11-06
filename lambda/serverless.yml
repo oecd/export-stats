@@ -15,5 +15,5 @@ functions:
           name: send-export-feedback-nudge
           description: Sends a message to Slack for people to give feedback
           # every weekday at 9am
-          rate: cron(0 7 ? * MON-FRI *)
+          rate: cron(0 8 ? * MON-FRI *)
           #timezone: Europe/Paris
