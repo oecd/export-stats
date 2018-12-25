@@ -17,3 +17,6 @@ Just in the probable case I forget when I next need to deploy, here's a quick re
     Serverless: Uploading function: nudger (3.09 MB)...
     Serverless: Successfully deployed function: nudger
     ✔ ~/Projects/export-stats/lambda [master ↑·1|…1]
+
+
+Humbly acknowledging use of https://github.com/DKirwan/calendar-heatmap. Thank you!
