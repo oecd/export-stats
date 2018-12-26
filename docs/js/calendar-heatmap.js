@@ -1,6 +1,6 @@
 /* global calendarHeatmap moment d3 */
 
-function calendarHeatmap () {
+function calendarHeatmap (year) {
   // defaults
   const width = 750
   const height = 110
@@ -9,8 +9,8 @@ function calendarHeatmap () {
   const SQUARE_LENGTH = 11
   const SQUARE_PADDING = 2
   const MONTH_LABEL_PADDING = 6
-  let startDate = moment('2018-01-01')
-  let endDate = moment('2018-12-31')
+  let startDate = moment(`${year}-01-01`)
+  let endDate = moment(`${year}-12-31`)
   let data = []
   let max = null
   const colorFail = '#E43F6F' // 'paradise pink'
@@ -124,7 +124,7 @@ function calendarHeatmap () {
         .attr('width', width)
         .attr('class', 'calendar-heatmap')
         .attr('height', height)
-        .style('padding', '36px')
+        .style('padding', '36px 72px')
 
       dayRects = svg.selectAll('.day-cell')
         .data(dateRange) //  array of days for the specified period
