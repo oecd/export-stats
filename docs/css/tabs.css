@@ -1,0 +1,32 @@
+
+#heatmaps {margin: 0 auto; height: 240px; min-width: 320px; }
+.tabContent {
+    background: #fff;
+    color: #373737;
+    border: 1px solid #a8a3a4;
+    min-height: 150px;
+}
+.tabContent > div {display: none;}
+
+#heatmaps input {display: none;}
+label {
+    display: inline-block; 
+    padding: 15px 25px; 
+    min-height: 26px;
+    font-weight: 600; 
+    text-align: center;}
+label:hover {color: #920d0d; cursor: pointer;}
+input:checked + label {background: white;color: #000000;min-height: 26px;border: 1px solid #a8a3a4;border-bottom: 1px solid white;}
+
+/* 
+
+this stuff will be injected via javascript depending on the number of years etc ....
+
+#tab2018:checked ~ .tabContent #heatmap2018,
+#tab2019:checked ~ .tabContent #heatmap2019
+{
+    display: block;
+}
+*/
+
+@media screen and (max-width: 400px) { label {padding: 15px 10px;} }
