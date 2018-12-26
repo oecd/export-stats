@@ -172,7 +172,7 @@ h2.export-percentage {
 
 /* for the heatmap */
 .calendar-heatmap {
-  margin: auto;
+    overflow: visible !important;
 }
 .day {
   fill: #eee;
