@@ -5,14 +5,14 @@ const explanationElt = $('#export-alltime-explanation')
 function displayStats () {
   $.getJSON('https://untitled-ithfprzbpej6.runkit.sh/', function (data) {
     Object.keys(data).forEach(function (key) {
-      const total = data[key].total
+      const total = data[key].currentYearTotal
       const success = data[key].success
       const failures = total - success
       const percentageElt = $(`#export-${key}-percentage`)
       const percentage = Math.round(success * 100 / total)
       percentageElt.text(`${percentage}%`)
       if (key === 'alltime') {
-        explanationElt.text(`Our goal is 95%.  Out of ${total} exports, ${failures} failed.`)
+        explanationElt.text(`Our goal is 95%.  Out of ${total} exports this year, ${failures} failed.`)
       }
       if (percentage >= threshold) {
         percentageElt.css('color', 'green')
