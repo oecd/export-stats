@@ -16,6 +16,8 @@ function displayStats () {
       }
       if (percentage >= threshold) {
         percentageElt.css('color', 'green')
+      } else if (threshold - percentage <= 4) {
+        percentageElt.css('color', 'orange')
       } else {
         percentageElt.css('color', 'red')
       }
