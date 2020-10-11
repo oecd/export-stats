@@ -1,9 +1,10 @@
 /* global $ _ d3 calendarHeatmap moment */
 const threshold = 95
 const explanationElt = $('#export-alltime-explanation')
+const apiBase = 'https://slack-export-updater.jfix1.repl.co'
 
 function displayStats () {
-  $.getJSON('https://untitled-ithfprzbpej6.runkit.sh/', function (data) {
+  $.getJSON(`${apiBase}/stats?cachebuster=${moment().unix()}`, function (data) {
     Object.keys(data).forEach(function (key) {
       const total = data[key].currentYearTotal
       const success = data[key].success
@@ -26,7 +27,7 @@ function displayStats () {
 }
 
 function displayMeme () {
-  $.getJSON('https://api-endpoint-for-export-stats-uij8p2objuah.runkit.sh/meme-generator')
+  $.getJSON(`${apiBase}/meme?cachebuster=${moment().unix()}`)
     .done(function (data) {
       $('#meme').attr('src', data.url)
     })
@@ -36,7 +37,7 @@ let paddingObj = {}
 let finalArr = []
 
 function displayHeatmap () {
-  $.getJSON(`https://untitled-uij8p2objuah.runkit.sh/docs-for-heatmap?cachebuster=${moment().unix()}`)
+  $.getJSON(`${apiBase}/heatmap?cachebuster=${moment().unix()}`)
     .done(function (dataByYear) {
       // data is an Object with year for key and array of export events as value
       // intermediate data structures for sorting and replacing ...
