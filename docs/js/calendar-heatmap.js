@@ -6,8 +6,8 @@ function calendarHeatmap (year) {
   const height = 110
   const legendWidth = 150
   let selector = 'body'
-  const SQUARE_LENGTH = 11
-  const SQUARE_PADDING = 2
+  const SQUARE_LENGTH = 14
+  const SQUARE_PADDING = 3
   const MONTH_LABEL_PADDING = 6
   let startDate = moment(`${year}-01-01`)
   let endDate = moment(`${year}-12-31`)
@@ -134,6 +134,8 @@ function calendarHeatmap (year) {
         .attr('class', function (d) { return `day-cell ${moment(d).format('YYYY-MM-DD')}` })
         .attr('width', SQUARE_LENGTH)
         .attr('height', SQUARE_LENGTH)
+        .attr('rx', 1)
+        .attr('ry', 1)
         .attr('fill', function (d) {
           const day = d.getDay()
           // no export on weekends
@@ -221,7 +223,7 @@ function calendarHeatmap (year) {
           .data(monthRange)
           .enter().append('text')
           .attr('class', 'month-name')
-          // .style()
+          .attr('fill', '#bbbbbb')
           .text(function (d) {
             return locale.months[d.getMonth()]
           })
@@ -243,6 +245,7 @@ function calendarHeatmap (year) {
             .attr('class', 'day-initial')
             .attr('transform', 'translate(-8,' + (SQUARE_LENGTH + SQUARE_PADDING) * (index + 1) + ')')
             .style('text-anchor', 'end')
+            .attr('fill', '#bbbbbb')
             .attr('dy', '2')
             .text(day)
         }

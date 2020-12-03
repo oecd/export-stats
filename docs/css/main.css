@@ -202,7 +202,9 @@ rect.day-cell:hover {
   font-family: Helvetica, arial, 'Open Sans', sans-serif
 }
 
-
+#meme {
+    border-radius: 5px;
+}
 
 
 
