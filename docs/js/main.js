@@ -5,8 +5,18 @@ const apiBase = 'https://slack-export-updater.jfix1.repl.co'
 
 function displayStats(data) {
   Object.keys(data).forEach(function (key) {
-    const total = data[key].currentYearTotal
-    const success = data[key].success
+    let total, success
+
+    switch (key) {
+      case 'alltime':
+        total = data.alltime.currentYearTotal
+        success = data.alltime.success
+        break
+      default:
+        total = data[key].total
+        success = data[key].overallSuccess
+        break
+    }
     const failures = total - success
     const percentageElt = $(`#export-${key}-percentage`)
     const percentage = Math.round(success * 100 / total)
@@ -32,7 +42,7 @@ let paddingObj = {}
 let finalArr = []
 
 function displayHeatmap(dataByYear) {
-  console.log(`HEATMAP: ${JSON.stringify(dataByYear)}`)
+  // console.log(`HEATMAP: ${JSON.stringify(dataByYear)}`)
   // data is an Object with year for key and array of export events as value
   // intermediate data structures for sorting and replacing ...
   let dataObj = {}
