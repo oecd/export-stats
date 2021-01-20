@@ -5,7 +5,7 @@ name: Publish and Deploy Svelte App
 on:
   push:
     branches:
-      - master
+      - svelte-refresh
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -25,6 +25,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: master # The branch the action should deploy to.
-          FOLDER: docs # The folder the action should deploy.
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: svelte-apps/public # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
