@@ -9,7 +9,6 @@
 
   	onMount(async () => {
 		const res = await fetch(`https://slack-export-updater-2.jfix1.repl.co/aio`);
-		// const res = await fetch('./test-data.json')
 		const statsResults = await res.json()
 		stats = await statsResults.stats
 		url = await statsResults.meme.url
@@ -22,7 +21,7 @@
 
 <Navbar class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<NavbarBrand>
-		<img src="/oecd-logo.png" width="30" height="30" alt="OECD logo">
+		<img src="./oecd-logo.png" width="30" height="30" alt="OECD logo">
 		Export statistics
 	</NavbarBrand>
 </Navbar>
