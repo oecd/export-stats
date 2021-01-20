@@ -1,5 +1,7 @@
 # Export stats
 
+The stats page is built using Svelte.  To deploy a new version: Whenever a commit is pushed to the `main` branch, a GitHub Action is triggered which will build the page and then deploy the result to the `gh-pages` branch. Have a look at the `.github/workflows/publish.yml` file. As usual, the page is visible here: https://oecd.github.io/export-stats/.
+
 One API endpoint delivers stats to keep track of one percentage: _successful exports_.
 
 * https://slack-export-updater-2.jfix1.repl.co/aio returns a JSON object for `stats`, `heatmap` and `meme` info ✅
