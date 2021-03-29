@@ -1,8 +1,11 @@
 service: export-nudger # NOTE: update this with your service name
+useDotenv: true
 provider:
   name: aws
   runtime: nodejs10.x
   region: eu-central-1
+  lambdaHashingVersion: 20201221
+
 # you can overwrite defaults here
 #  stage: dev
 #plugins:
@@ -15,5 +18,5 @@ functions:
           name: send-export-feedback-nudge
           description: Sends a message to Slack for people to give feedback
           # every weekday at 9am
-          rate: cron(0 8 ? * MON-FRI *)
+          rate: cron(0 7 ? * MON-FRI *)
           #timezone: Europe/Paris
