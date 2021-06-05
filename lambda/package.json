@@ -13,7 +13,7 @@
     "hoek": "^5.0.3",
     "moment": "^2.20.1",
     "request": "2.88.0",
-    "serverless": "^2.19.0",
+    "serverless": "^2.44.0",
     "serverless-local-schedule": "^0.1.3"
   }
 }
