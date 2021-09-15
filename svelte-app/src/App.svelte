@@ -8,7 +8,7 @@
 	let url = './spinner.svg', stats = {}, heatmaps = {}, loading = true
 
   	onMount(async () => {
-		const res = await fetch(`https://slack-export-updater-2.jfix1.repl.co/aio`);
+		const res = await fetch(`https://slack-export-updater.herokuapp.com/aio`);
 		const statsResults = await res.json()
 		stats = await statsResults.stats
 		url = await statsResults.meme.url
