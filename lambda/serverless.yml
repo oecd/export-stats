@@ -4,7 +4,6 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: eu-central-1
-  lambdaHashingVersion: 20201221
 
 # you can overwrite defaults here
 #  stage: dev
