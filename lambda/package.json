@@ -15,7 +15,7 @@
     "request": "2.88.0"
   },
   "devDependencies": {
-    "serverless": "^3.24.1",
+    "serverless": "^3.29.0",
     "serverless-local-schedule": "^0.1.7"
   }
 }
